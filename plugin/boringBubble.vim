@@ -13,10 +13,6 @@ if exists("g:boringBubble#map")==0
 	let g:boringBubble#map="oo0O"
 endif
 
-function! GetBubble()
-	return g:boringBubble#Bubble
-endfunction
-
 function! ChangeBubble()
 	let s:rd=rand()%((1<<g:boringBubble#len*2)-1)
 	let s:tmp=""
@@ -26,10 +22,10 @@ function! ChangeBubble()
 		let s:rd=s:rd>>2
 		let s:c=s:c+1
 	endwhile
-	let g:boringBubble#Bubble = s:tmp
-	if g:boringBubble#echo==1
+	if g:boringBubble#echo==1&&exists("g:boringBubble#Bubble")
 		echo s:tmp
 	endif
+	let g:boringBubble#Bubble = s:tmp
 endfunction
 
 call ChangeBubble()
